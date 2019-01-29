@@ -19,14 +19,14 @@ var doubleNumberValue: Double? = nil
  - Experiment:
  Declare a non-optional variable of a `String` and set it to `nil`. What happens?
  */
-
+var nonOptional: String = "nil"
 
 /*:
  - Experiment:
  Declare an optional variable of a type `String` and set an initial `String` value to it. Then set it to `nil` on the next line. Does this work? Why or why not?
  */
-
-
+var optional: String? = "nil"
+optional = nil
 /*:
  Let's consider multiplying two numbers together that are of different types. Since we have a `Double` and an `Int`, we need to convert the two numbers to the same type. For example, creating a new `Double` using an `Int`.
  */
@@ -47,13 +47,13 @@ ratio * convertIntegerValue // now this works!
  - Experiment:
  Declare a `String` containing digits and try converting it to a `Double` the same way shown in the above example. What do you notice about the variable type? Hint: Use 'Option' + Mouse Click on the variable to see the type
  */
-
-
+var numberString = "1111"
+var doubleString = Double(numberString)
 /*:
  - Experiment:
  With your newly converted `Double` from a `String`, try multiplying it with the 'ratio' variable. What happens?
  */
-
+//doubleString * ratio
 
 /*:
  Your newly converted `Double` value is a `Double?` which indicates we might have a double or we might have nothing.  Converting a `String` to a `Double` might fail because the `String` does not guarantee there will only be digits within it.
@@ -78,13 +78,14 @@ print("\(myOptionalDouble!)")
  Now you try! Try printing out your converted `Double?` with a force unwrap
 */
 
-
+print("\(Double(numberString)!)")
 
 /*:
  - Experiment:
  Go back and change your `String` to something that has no digits. What happens and why?
  */
-
+var nu = "aa"
+//print("\(Double(nu)!)")
 
 
 /*:
@@ -92,21 +93,23 @@ print("\(myOptionalDouble!)")
  Declare an optional variable of a type `String` and set an initial `String` value to it. Try printing it.
  Now print it again, but this time unwrap the optional variable using the `'!'`. What's different about the two lines you printed?
  */
-
-
+var st: String? = "St"
+//print("\(st)")
+print("\(st!)")
 /*:
  - Experiment:
  Try setting an optional `String` variable to a non-optional `String` variable. What happens? What can you do to prevent the compiler from throwing an error?
  */
-
-
+var s: String? = "S"
+var t: String = "t"
+//t = s
 /*:
  The next way to deal with optionals is called `"Conditional unwrapping"` or sometimes casually called an `"if-let"`. It's **much** safer, and won't break your Playground, or any of your code.
  
   The code below uses a conditional unwrap on `gravityConstant`. This creates a new variable `unwrapped`, but only if `gravityConstant` is *not* nil. If you option click on the variable `unwrapped` you will notice that it is a `Double` not a `Double?`
 */
 
-let gravityConstant: Double? = 9.8
+let gravityConstant: Double? = nil
 
 if let unwrapped = gravityConstant {
     // unwrapped exists in this block, and is number unwrapped.
@@ -127,13 +130,21 @@ if let unwrapped = gravityConstant {
  - Experiment:
  Create an array with containing elements of any type of your choice. Try experimenting with the array methods `'first'` and `'last'` to find out what they do. You'll see that both return optional values. Print out the values of first and last by using conditional unwrapping.
  */
-
+var p = [1, 23, 4, 5]
+p.first
+p.last
+print("\(p.first!)")
 
 /*:
  - Experiment:
  Using the same array, experiment with the array method `'indexOf'` and find out what it does. Print out the value using conditional unwrapping.
  */
-
+p.firstIndex(of: 4)
+if let numIndex = p.firstIndex(of: 4) {
+  print("\(numIndex)")
+} else {
+  print("No such index")
+}
 
 /*:
  - Callout(Challenge):
@@ -150,3 +161,9 @@ if let unwrapped = gravityConstant {
     Try printing a car's price using a name that doesn't exist.
 */
 //: [Next](@next)
+var carPrices = ["Mazda3": 50000, "CRV": 60000, "Hummer": 100000]
+if let price = carPrices["Elantra"] {
+  print("\(price)")
+} else {
+  print("No such car")
+}

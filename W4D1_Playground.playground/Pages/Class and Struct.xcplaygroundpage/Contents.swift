@@ -12,8 +12,9 @@
  */
 class ShapeClass {
     var numberOfSides = 0
+  var name = ""
     func description() -> String {
-        return "A shape with \(numberOfSides) sides."
+        return "A shape with \(numberOfSides) sides and name \(name)."
     }
 }
 /*:
@@ -36,7 +37,10 @@ struct ShapeStruct {
  - Experiment:
  Try creating an instance of the ShapeClass. We can do this by writing the class name then putting parentheses '()' after the class name. Assign it to a declared variable and try setting the variables 'numberofSides' and 'name' and calling the 'description' method.
  */
-
+var shape = ShapeClass()
+shape.numberOfSides = 4
+shape.name = "Rectangle"
+shape.description()
 
 /*:
  Our ShapeClass is looking good but it is missing something important. We need an initializer to set up the class when an instance is created. We are going to create another class very similar to ShapeClass but this time, we will add the initializer.
@@ -49,7 +53,12 @@ class NamedShapeClass {
     init(name: String) {
         self.name = name
     }
-    
+  
+  init(name: String, numberOfSides: Int) {
+    self.name = name
+    self.numberOfSides = numberOfSides
+  }
+  
     func description() -> String {
         return "A shape with \(numberOfSides) sides."
     }
@@ -59,7 +68,7 @@ class NamedShapeClass {
  - Experiment:
  Add another initializer to our 'NamedShapeClass'. Have this initializer take in 'name' and 'numberOfSides' as its parameters. Then test it out by creating an instance of 'NamedShapeClass'.
  */
-
+var nShape = NamedShapeClass(name: "Square", numberOfSides: 3)
 
 /*:
  - Callout(Challenge):
@@ -72,9 +81,21 @@ class NamedShapeClass {
  */
 
 class Square : NamedShapeClass {
-    
+  var sideLength: Int
+  init(name: String, sideLength: Int) {
+    self.sideLength = sideLength
+    super.init(name: name)
+  }
+  func area() -> Int{
+    return sideLength * sideLength
+  }
+  override func description() -> String {
+    return "number of sides: \(numberOfSides) side length: \(sideLength)"
+  }
 }
-
+var sq = Square(name: "Name", sideLength: 5)
+sq.area()
+sq.description()
 /*:
  - Callout(Challenge):
  Follow the instructions to create your own Car class.
@@ -90,8 +111,26 @@ class Square : NamedShapeClass {
  - Add an instance of Toyota called toyota. Initialize it.
  - Add the drive() method to make sure it prints out "Prius"
  */
+class Car {
+  var model: String
+  func drive() {
+    print("driving \(model)")
+  }
+  init(model: String) {
+    self.model = model
+  }
+}
 
+class Toyota : Car {
+  init() {
+    super.init(model: "Prius")
+  }
+}
 
+var nissan = Car(model: "Rogue")
+nissan.drive()
+var toyota = Toyota()
+toyota.drive()
 
 /*:
  - Callout(Challenge):
@@ -103,26 +142,38 @@ Now create the same Person class but convert it to a struct. Uncomment 'Section 
 */
 // Implement Person class under here!
 
+class Person {
+  var name: String
+  init(name: String) {
+    self.name = name
+  }
+}
 
 // Section A
-//var firstPersonObject = Person(name: "Joe")
-//var secondPersonObject = firstPersonObject
-//secondPersonObject.name = "Jane"
-//
-//print(firstPersonObject.name)
-//print(secondPersonObject.name)
+var firstPersonObject = Person(name: "Joe")
+var secondPersonObject = firstPersonObject
+secondPersonObject.name = "Jane"
+
+print(firstPersonObject.name)
+print(secondPersonObject.name)
 
 
 // Implement Person struct under here!
 
+struct Persons {
+  var name: String
+  init(name: String) {
+    self.name = name
+  }
+}
 
 // Section B
-//var firstPersonStruct = Person(name: "Joe")
-//var secondPersonStruct = firstPersonStruct
-//secondPersonStruct.name = "Jane"
-//
-//print(firstPersonStruct.name)
-//print(secondPersonStruct.name)
+var firstPersonStruct = Persons(name: "Joe")
+var secondPersonStruct = firstPersonStruct
+secondPersonStruct.name = "Jane"
+
+print(firstPersonStruct.name)
+print(secondPersonStruct.name)
 
 
 //: [Next](@next)

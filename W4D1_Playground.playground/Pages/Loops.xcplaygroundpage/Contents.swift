@@ -35,14 +35,21 @@ for i in 2...5 {
  - Experiment:
   Use a ranged for loop to search through the 'pets' array above for the word 'pig' and print out its index.
  */
-
+for i in 0..<pets.count {
+  if pets[i] == "pig" {
+    print("Index of pig is \(i)")
+  }
+}
 
 /*:
  - Experiment:
  Create an array of random numbers of your choosing then make a for loop that adds 1 to each number.
  */
-
-
+var random = [1, 4, 512, 42, 41412, 511, 51, 424]
+for i in 0..<random.count {
+  random[i] = random[i] + 1
+}
+random
 /*:
  - Experiment:
  Take a look at the example below. Modify the code so that it searches for both the largest and smallest number. Then print out the result.
@@ -67,14 +74,28 @@ for (_, numbers) in interestingNumbers {
 }
 print(largest)
 
-
+var smallest = largest
+for (_, numbers) in interestingNumbers {
+  for number in numbers {
+    if number < smallest {
+      smallest = number
+    }
+  }
+}
+print(smallest)
 /*:
  - Callout(Challenge):
  Given a number `N`, from 0 to `N`, add up all the odd numbers and print out the result.
  ie: N = 5, 1+3+5 = 9
  */
-
-
+let givenNumber = 10
+var sum = 0
+for i in 0...10 {
+  if i % 2 != 0 {
+    sum = sum + i
+  }
+}
+print(sum)
 /*:
  - Callout(Challenge):
  Given the following array of numbers, determine the frequency of each number using a for loop.
@@ -89,5 +110,14 @@ print(largest)
  */
 
 let numberArray = [1, 4, 5, 5, 5, 3, 2, 1, 4, 2, 2, 2, 1]
+var numberDic: [Int:Int] = [:]
+for number in numberArray {
+  if numberDic[number] != nil {
+    numberDic[number] = numberDic[number]! + 1
+  } else {
+    numberDic[number] = 1
+  }
+}
+numberDic
 
 //: [Next](@next)

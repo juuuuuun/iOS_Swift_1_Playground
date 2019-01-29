@@ -19,19 +19,19 @@ myDictionary["Principal"] = 1
  - Experiment:
  Try creating an array and dictionary using `'let'` vs `'var'` then try adding something to them. What do you notice? For the array, you can use a method called 'append' to add something to it.
  */
-
-
+var array: [String] = []
+array.append("Rewrite")
 /*:
  - Experiment:
  Try creating an empty array with an explicit type `[type]`. What happens when you add a value that isn't the same type?
  */
-
-
+var intArray = [2]
+intArray.append(3)
 /*:
  - Experiment:
  Try creating an empty dictionary with an explicit type. `[keyType: valueType]`
  */
-
+var dictionary: [String:Int] = [:]
 
 /*:
  - Experiment:
@@ -43,7 +43,13 @@ myDictionary["Principal"] = 1
  - reverse
  - count
  */
-
+var arrayOfNumbers = [1, 3, 4, 5]
+arrayOfNumbers.append(2)
+arrayOfNumbers.insert(6, at: 1)
+arrayOfNumbers.remove(at: 3)
+arrayOfNumbers.count
+arrayOfNumbers.reverse()
+arrayOfNumbers.removeAll()
 
 /*:
  - Experiment:
@@ -52,7 +58,11 @@ myDictionary["Principal"] = 1
  - isEmpty
  - count
  */
-
+var dictionaryOfNumbers = ["A":1, "B":2, "C":4]
+dictionaryOfNumbers["c"]
+dictionaryOfNumbers.removeValue(forKey: "B")
+dictionaryOfNumbers.isEmpty
+dictionaryOfNumbers.count
 
 /*:
  - Callout(Challenge):
@@ -60,7 +70,12 @@ myDictionary["Principal"] = 1
  
     Finally, print out each person's name from the array using their index and string interpolation
 */
+var mutable: [String] = []
+mutable.append("John")
+mutable.append("Karen")
+mutable.append("Jane")
 
+print("\(mutable[0]), \(mutable[1]), \(mutable[2])")
 
 /*:
  - Callout(Challenge):
@@ -74,6 +89,6 @@ myDictionary["Principal"] = 1
  
     On the next line, add this last person's info: Bob - $45000
  */
-
-
+var mutableSalary = ["John": 50000, "Jane": 70000, "Karen": 62000]
+mutableSalary["Bob"] = 45000
 //: [Next](@next)
